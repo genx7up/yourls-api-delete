@@ -13,13 +13,6 @@ yourls_add_filter( 'api_action_delete', 'clayton_api_action_delete' );
 
 // Actually delete
 function clayton_api_action_delete() {
-	// We don't want unauthenticated users deleting links
-	// If YOURLS is in public mode, force authentication anyway
-	if (!yourls_is_private()) {
-		yourls_do_action( 'require_auth' );
-		require_once( YOURLS_INC.'/auth.php' );
-	}
-
 	// Need 'shorturl' parameter
 	if( !isset( $_REQUEST['shorturl'] ) ) {
 		return array(
